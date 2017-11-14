@@ -40,22 +40,22 @@ public class GithubSecurityRealmTest {
 
     @Test
     public void testEquals_true() {
-        GithubSecurityRealm a = new GithubSecurityRealm("http://jenkins.acme.com", "http://jenkins.acme.com/api/v3", "someid", "somesecret", "read:org");
-        GithubSecurityRealm b = new GithubSecurityRealm("http://jenkins.acme.com", "http://jenkins.acme.com/api/v3", "someid", "somesecret", "read:org");
+        GithubSecurityRealm a = new GithubSecurityRealm("http://jenkins.acme.com", "http://jenkins.acme.com/api/v3", "someid", "somesecret", "jenkinsciorg", "read:org");
+        GithubSecurityRealm b = new GithubSecurityRealm("http://jenkins.acme.com", "http://jenkins.acme.com/api/v3", "someid", "somesecret", "jenkinsciorg", "read:org");
         assertTrue(a.equals(b));
     }
 
     @Test
     public void testEquals_false() {
-        GithubSecurityRealm a = new GithubSecurityRealm("http://jenkins.acme.com", "http://jenkins.acme.com/api/v3", "someid", "somesecret", "read:org");
-        GithubSecurityRealm b = new GithubSecurityRealm("http://jenkins.acme.com", "http://jenkins.acme.com/api/v3", "someid", "somesecret", "read:org,repo");
+        GithubSecurityRealm a = new GithubSecurityRealm("http://jenkins.acme.com", "http://jenkins.acme.com/api/v3", "someid", "somesecret", "jenkinsciorg", "read:org");
+        GithubSecurityRealm b = new GithubSecurityRealm("http://jenkins.acme.com", "http://jenkins.acme.com/api/v3", "someid", "somesecret", "jenkinsciorg", "read:org,repo");
         assertFalse(a.equals(b));
         assertFalse(a.equals(""));
     }
 
     @Test
     public void testHasScope_true() {
-        GithubSecurityRealm a = new GithubSecurityRealm("http://jenkins.acme.com", "http://jenkins.acme.com/api/v3", "someid", "somesecret", "read:org,user,user:email");
+        GithubSecurityRealm a = new GithubSecurityRealm("http://jenkins.acme.com", "http://jenkins.acme.com/api/v3", "someid", "somesecret", "jenkinsciorg", "read:org,user,user:email");
         assertTrue(a.hasScope("user"));
         assertTrue(a.hasScope("read:org"));
         assertTrue(a.hasScope("user:email"));
@@ -63,7 +63,7 @@ public class GithubSecurityRealmTest {
 
     @Test
     public void testHasScope_false() {
-        GithubSecurityRealm a = new GithubSecurityRealm("http://jenkins.acme.com", "http://jenkins.acme.com/api/v3", "someid", "somesecret", "read:org,user,user:email");
+        GithubSecurityRealm a = new GithubSecurityRealm("http://jenkins.acme.com", "http://jenkins.acme.com/api/v3", "someid", "somesecret", "jenkinsciorg", "read:org,user,user:email");
         assertFalse(a.hasScope("somescope"));
     }
 
